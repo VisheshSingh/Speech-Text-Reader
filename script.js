@@ -65,7 +65,7 @@ function createBox(item) {
 
   box.innerHTML = `
         <img src="${img}" alt="${text}" />
-        <p class="info>${text}</p>
+        <p class="info">${text}</p>
     `;
 
   // @todo - speech API
