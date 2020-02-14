@@ -58,6 +58,10 @@ select:focus {
   transition: transform 1s ease-in-out;
 }
 
+.text-box.show {
+  transform: translate(-50%, 0);
+}
+
 .text-box select {
   color: #fff;
   background-color: darksalmon;
