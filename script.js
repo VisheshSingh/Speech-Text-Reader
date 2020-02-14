@@ -68,10 +68,22 @@ function createBox(item) {
         <p class="info">${text}</p>
     `;
 
-  // @todo - speech API
+  // @todo - speech event
+  box.addEventListener('click', () => {
+    setTextMessage(text);
+    speakText();
+
+    box.classList.add('active');
+    setTimeout(() => {
+      box.classList.remove('active');
+    }, 800);
+  });
 
   main.appendChild(box);
 }
+
+// speech synthesis INIT
+const message = new SpeechSynthesisUtterance();
 
 let voices = [];
 
@@ -85,6 +97,14 @@ function getVoices() {
 
     voiceSelect.appendChild(option);
   });
+}
+
+function setTextMessage(text) {
+  message.text = text;
+}
+
+function speakText() {
+  speechSynthesis.speak(message);
 }
 
 speechSynthesis.addEventListener('voiceschanged', getVoices);
