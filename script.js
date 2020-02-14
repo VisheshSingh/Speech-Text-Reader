@@ -89,7 +89,7 @@ let voices = [];
 
 function getVoices() {
   voices = speechSynthesis.getVoices();
-  console.log(voices);
+  // console.log(voices);
   voices.forEach(voice => {
     const option = document.createElement('option');
     option.value = voice.name;
@@ -107,6 +107,10 @@ function speakText() {
   speechSynthesis.speak(message);
 }
 
+function changeVoice(e) {
+  message.voice = voices.find(voice => voice.name === e.target.value);
+}
+
 speechSynthesis.addEventListener('voiceschanged', getVoices);
 
 toggleBtn.addEventListener('click', () =>
@@ -116,5 +120,7 @@ toggleBtn.addEventListener('click', () =>
 closeBtn.addEventListener('click', () =>
   document.getElementById('text-box').classList.toggle('show')
 );
+
+voiceSelect.addEventListener('change', changeVoice);
 
 getVoices();
